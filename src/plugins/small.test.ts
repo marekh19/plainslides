@@ -3,6 +3,7 @@ import { makeDeck } from '../test-utils'
 import { autohide } from './autohide'
 import { fit, fitStage, fitThumbnails } from './fit'
 import { fullscreen } from './fullscreen'
+import { notes } from './notes'
 import { print } from './print'
 import { type Widget, widgets } from './widgets'
 
@@ -32,7 +33,7 @@ describe('fit', () => {
     expect(fitThumbnails(1600, 200, 320, 16).columns).toBe(1)
   })
 
-  it('writes the stage variables and subtracts a visible notes panel', () => {
+  it('writes the stage variables and subtracts a visible notes panel', async () => {
     const deck = makeDeck(specs, { plugins: [fit({ thumbWidth: 400 })] })
     const scale = () => Number(deck.root.style.getPropertyValue('--deck-scale'))
     expect(deck.root.style.getPropertyValue('--deck-thumb-columns')).not.toBe(
@@ -47,9 +48,31 @@ describe('fit', () => {
     )
     document.body.append(panel)
     deck.setMode('notes', true)
+    await Promise.resolve()
     expect(scale()).toBeLessThan(before)
     deck.destroy()
     expect(deck.root.style.getPropertyValue('--deck-scale')).toBe('')
+  })
+
+  it('measures the notes panel after the notes plugin shows it', async () => {
+    const addPanel = () => {
+      const panel = document.createElement('div')
+      panel.setAttribute('data-deck-notes-panel', '')
+      vi.spyOn(panel, 'getBoundingClientRect').mockReturnValue(
+        new DOMRect(0, 0, 100, window.innerHeight / 2),
+      )
+      document.body.append(panel)
+    }
+    // The panel must exist before fit and notes install, as in a real page.
+    const deck = makeDeck(specs, { plugins: [addPanel, fit(), notes()] })
+    const scale = () => Number(deck.root.style.getPropertyValue('--deck-scale'))
+    deck.setMode('notes', true)
+    deck.setMode('notes', false)
+    await Promise.resolve()
+    const hidden = scale()
+    deck.setMode('notes', true)
+    await Promise.resolve()
+    expect(scale()).toBeLessThan(hidden)
   })
 })
 

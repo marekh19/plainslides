@@ -87,7 +87,12 @@ export const fit =
     )
     let active = true
     void doc.fonts?.ready.then(() => active && update())
-    const cleanups = [listen(win, 'resize', update), deck.on('mode', update)]
+    const cleanups = [
+      listen(win, 'resize', update),
+      // Wait until every mode listener has run: the notes plugin shows its
+      // panel in its own listener, after this one.
+      deck.on('mode', () => queueMicrotask(() => active && update())),
+    ]
     update()
 
     return () => {
