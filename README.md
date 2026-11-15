@@ -1,5 +1,10 @@
 # plainslides
 
+[![Tests](https://github.com/marekh19/plainslides/actions/workflows/test.yml/badge.svg)](https://github.com/marekh19/plainslides/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/marekh19/plainslides/branch/main/graph/badge.svg)](https://codecov.io/gh/marekh19/plainslides)
+[![npm version](https://img.shields.io/npm/v/plainslides.svg)](https://www.npmjs.com/package/plainslides)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 HTML slide decks that AI agents can build.
 
 plainslides is a headless TypeScript library for HTML slide decks.
@@ -17,7 +22,7 @@ The current and the previous major version of Chrome, Firefox, and Safari.
 Download a pinned version of the browser build and save it next to your HTML file:
 
 ```sh
-curl -L -o plainslides.iife.js https://cdn.jsdelivr.net/npm/plainslides@0.1.0
+curl -L -o plainslides.iife.js https://cdn.jsdelivr.net/npm/plainslides@0.1.0/dist/index.iife.js
 ```
 
 Or install it for a bundler:

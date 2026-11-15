@@ -24,10 +24,10 @@ The library supports the current and the previous major version of Chrome, Firef
 Download a pinned version of the IIFE build and save it next to `index.html`:
 
 ```sh
-curl -L -o plainslides.iife.js https://cdn.jsdelivr.net/npm/plainslides@0.1.0
+curl -L -o plainslides.iife.js https://cdn.jsdelivr.net/npm/plainslides@0.1.0/dist/index.iife.js
 ```
 
-Replace `0.1.0` with the version you want. The package sets `unpkg` and `jsdelivr` to `dist/index.iife.js`, so the URL without a file path serves the IIFE build.
+Replace `0.1.0` with the version you want. Keep the full file path `dist/index.iife.js`: it serves the exact build. The short URL without a path also works, but jsDelivr then serves its own minified copy.
 
 Rules:
 
