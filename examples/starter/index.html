@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Starter deck</title>
+    <link rel="stylesheet" href="example.css" />
+  </head>
+  <body>
+    <!--
+      Starter deck for plainslides. Copy this folder, keep plainslides.iife.js next
+      to index.html, and open index.html from disk. No server is needed.
+      Every recipe from docs/agent-guide.md appears once below.
+    -->
+    <main data-deck data-transition="fade">
+      <!-- Recipe 1: title slide -->
+      <section
+        data-slide
+        id="title"
+        data-duration="30"
+        data-section="Introduction"
+        class="slide-title"
+        data-layout="col"
+      >
+        <p data-role="eyebrow">Starter deck</p>
+        <h1 data-role="title">Slides that agents can build</h1>
+        <p data-role="lead">One HTML file, one script, no server.</p>
+        <p data-push data-role="kicker">Press <kbd>?</kbd> for keys</p>
+        <aside data-notes>
+          <p>
+            Welcome everyone. This deck shows <strong>every recipe</strong>.
+          </p>
+        </aside>
+      </section>
+
+      <!-- Recipe 2: agenda generated from sections -->
+      <section
+        data-slide
+        id="agenda"
+        data-duration="40"
+        data-section="Introduction"
+        data-layout="col"
+      >
+        <h2>Agenda</h2>
+        <ol data-deck-agenda class="agenda">
+          <li data-deck-tracker-item="Introduction">Introduction</li>
+          <li data-deck-tracker-item="Numbers">Numbers</li>
+          <li data-deck-tracker-item="Structure">Structure</li>
+          <li data-deck-tracker-item="Code and data">Code and data</li>
+          <li data-deck-tracker-item="Wrap-up">Wrap-up</li>
+        </ol>
+        <aside data-notes><p>Five short parts.</p></aside>
+      </section>
+
+      <!-- Recipe 3: large section tracker on a divider slide -->
+      <section
+        data-slide
+        id="numbers"
+        data-duration="15"
+        data-section="Numbers"
+        class="slide-divider"
+        data-layout="center"
+      >
+        <h2 data-role="title">Numbers</h2>
+        <ol data-deck-tracker class="tracker tracker-large">
+          <li data-deck-tracker-item="Introduction">Introduction</li>
+          <li data-deck-tracker-item="Numbers">Numbers</li>
+          <li data-deck-tracker-item="Structure">Structure</li>
+          <li data-deck-tracker-item="Code and data">Code and data</li>
+          <li data-deck-tracker-item="Wrap-up">Wrap-up</li>
+        </ol>
+      </section>
+
+      <!-- Recipe 4: stat grid, with a small tracker and a footer rail -->
+      <section
+        data-slide
+        id="stats"
+        data-duration="60"
+        data-section="Numbers"
+        data-layout="col"
+      >
+        <ol data-deck-tracker class="tracker tracker-small">
+          <li data-deck-tracker-item="Introduction">Introduction</li>
+          <li data-deck-tracker-item="Numbers">Numbers</li>
+          <li data-deck-tracker-item="Structure">Structure</li>
+          <li data-deck-tracker-item="Code and data">Code and data</li>
+          <li data-deck-tracker-item="Wrap-up">Wrap-up</li>
+        </ol>
+        <h2>Stat grid</h2>
+        <div data-layout="grid" style="--cols: 3" class="stats">
+          <div data-role="stat" data-step>
+            <span data-role="stat-value">22</span>
+            <span data-role="stat-label">slides in the source deck</span>
+          </div>
+          <div data-role="stat" data-step>
+            <span data-role="stat-value">400</span>
+            <span data-role="stat-label">lines of hand-written script</span>
+          </div>
+          <div data-role="stat" data-step>
+            <span data-role="stat-value">1</span>
+            <span data-role="stat-label">call to start a deck</span>
+          </div>
+        </div>
+        <!-- Recipe 16: footer rail with source and page number -->
+        <footer data-push data-layout="row" class="rail">
+          <span>Source: starter example</span>
+          <span data-deck-page></span>
+        </footer>
+        <aside data-notes>
+          <p>Each stat appears on a step. Press the right arrow three times.</p>
+        </aside>
+      </section>
+
+      <!-- Recipe 5 and 18: hero number with explanation and a chart widget -->
+      <section
+        data-slide
+        id="hero"
+        data-duration="60"
+        data-section="Numbers"
+        data-layout="split"
+        style="--split: 5fr 4fr"
+      >
+        <div data-layout="col">
+          <p data-role="eyebrow">Hero number</p>
+          <p data-role="hero">3x</p>
+          <p data-role="lead">
+            Faster deck builds when the agent reads one guide instead of
+            inventing navigation.
+          </p>
+        </div>
+        <figure
+          data-widget="bars"
+          data-values="Hand-written:9,With library:3"
+          aria-label="Bar chart, build time in minutes: hand-written 9, with library 3."
+          class="chart"
+        ></figure>
+      </section>
+
+      <!-- Recipe 6: quote with citation; per-slide transition override -->
+      <section
+        data-slide
+        id="quote"
+        data-title="Quote"
+        data-duration="30"
+        data-section="Numbers"
+        data-transition="zoom"
+        data-layout="center"
+      >
+        <blockquote data-role="quote">
+          <p>The best interface for an agent is a short, complete contract.</p>
+          <footer data-role="cite">A starter deck</footer>
+        </blockquote>
+      </section>
+
+      <!-- Recipe 7: card grid with tags; recipe 19: build one card at a time -->
+      <section
+        data-slide
+        id="cards"
+        data-duration="60"
+        data-section="Structure"
+        data-subsection="Cards"
+        data-transition="slide"
+        data-layout="col"
+      >
+        <h2>Card grid</h2>
+        <div data-layout="grid" style="--cols: 3" class="cards">
+          <article class="card" data-step>
+            <span data-role="tag">Core</span>
+            <h3>Navigation</h3>
+            <p>Keys, clicks, swipes, and the URL hash.</p>
+          </article>
+          <article class="card" data-step>
+            <span data-role="tag">Plugin</span>
+            <h3>Presenter</h3>
+            <p>Notes, clock, and pace in a second window.</p>
+          </article>
+          <article class="card" data-step>
+            <span data-role="tag">CSS</span>
+            <h3>Layout</h3>
+            <p>Rows, columns, grids, and splits.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Recipe 8: numbered steps; recipe 19: highlight current, dim earlier -->
+      <section
+        data-slide
+        id="steps"
+        data-duration="60"
+        data-section="Structure"
+        data-subsection="Steps"
+        data-transition="slide"
+        data-layout="col"
+      >
+        <h2>Numbered steps</h2>
+        <ol class="numbered focus-steps">
+          <li data-step>Write the slides as HTML sections.</li>
+          <li data-step>Add data attributes for time, sections, and steps.</li>
+          <li data-step>Call <code>PlainSlides.start()</code>.</li>
+        </ol>
+      </section>
+
+      <!-- Recipe 9: vertical flow with connectors -->
+      <section
+        data-slide
+        id="flow"
+        data-duration="45"
+        data-section="Structure"
+        data-subsection="Flow"
+        data-layout="col"
+      >
+        <h2>Vertical flow</h2>
+        <ol class="flow">
+          <li>Person asks an agent for a deck</li>
+          <li>Agent reads the guide</li>
+          <li>Agent writes index.html</li>
+          <li>Person presents</li>
+        </ol>
+      </section>
+
+      <!-- Recipe 10: tree with right-aligned metadata -->
+      <section
+        data-slide
+        id="tree"
+        data-duration="45"
+        data-section="Structure"
+        data-subsection="Tree"
+        data-layout="col"
+      >
+        <h2>Tree</h2>
+        <ul class="tree">
+          <li><span>deck/</span><span>folder</span></li>
+          <li class="tree-child"><span>index.html</span><span>12 kB</span></li>
+          <li class="tree-child"><span>example.css</span><span>9 kB</span></li>
+          <li class="tree-child">
+            <span>plainslides.iife.js</span><span>11 kB</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Recipe 11: terminal block -->
+      <section
+        data-slide
+        id="terminal"
+        data-duration="45"
+        data-section="Code and data"
+        data-layout="col"
+      >
+        <h2>Terminal</h2>
+        <pre
+          class="terminal"
+        ><code><span data-role="prompt">$</span> <span data-role="command">curl -L -o plainslides.iife.js https://cdn.jsdelivr.net/npm/plainslides@0.1.0</span>
+<span data-role="output">  % Total    % Received
+100 11.2k  100 11.2k</span></code></pre>
+      </section>
+
+      <!-- Recipe 12 and 17: key-value comparison in a two-column split -->
+      <section
+        data-slide
+        id="compare"
+        data-duration="45"
+        data-section="Code and data"
+        data-layout="col"
+      >
+        <h2>Comparison</h2>
+        <div data-layout="split" style="--split: 6fr 4fr">
+          <dl class="kv">
+            <div>
+              <dt>Navigation</dt>
+              <dd>Built in</dd>
+            </div>
+            <div>
+              <dt>Presenter view</dt>
+              <dd>Built in</dd>
+            </div>
+            <div>
+              <dt>Styles</dt>
+              <dd>Yours</dd>
+            </div>
+          </dl>
+          <dl class="kv">
+            <div>
+              <dt>Size</dt>
+              <dd>Under 12 kB</dd>
+            </div>
+            <div>
+              <dt>Network</dt>
+              <dd>None</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Recipe 13: data table -->
+      <section
+        data-slide
+        id="table"
+        data-duration="45"
+        data-section="Code and data"
+        data-layout="col"
+      >
+        <h2>Data table</h2>
+        <table class="data">
+          <caption>
+            Keys by command
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Command</th>
+              <th scope="col">Key</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Overview</td>
+              <td>O</td>
+            </tr>
+            <tr>
+              <td>Speaker notes</td>
+              <td>N</td>
+            </tr>
+            <tr>
+              <td>Presenter view</td>
+              <td>S</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Recipe 14 and 15: takeaways with a bottom-pinned conclusion -->
+      <section
+        data-slide
+        id="takeaways"
+        data-duration="45"
+        data-section="Wrap-up"
+        data-layout="col"
+      >
+        <h2>Takeaways</h2>
+        <ol class="takeaways">
+          <li>The library owns behavior.</li>
+          <li>Your CSS owns the look.</li>
+          <li>One guide covers both.</li>
+        </ol>
+        <p data-push class="conclusion">Start from this folder.</p>
+      </section>
+
+      <!-- Recipe 1: closing slide -->
+      <section
+        data-slide
+        id="end"
+        data-duration="20"
+        data-section="Wrap-up"
+        class="slide-title"
+        data-layout="col"
+      >
+        <p data-role="eyebrow">Thank you</p>
+        <h1 data-role="title">Questions?</h1>
+      </section>
+    </main>
+
+    <!-- Bindings outside the deck: progress bar, help bar, notes panel -->
+    <div data-deck-progress class="progress"></div>
+
+    <div data-deck-autohide class="help">
+      <ul data-deck-keys class="keys"></ul>
+    </div>
+
+    <div data-deck-notes-panel class="notes-panel">
+      <div class="notes-meta">
+        <span data-deck-page></span>
+        <span data-deck-section></span>
+        <span data-deck-clock></span>
+        <span data-deck-pace></span>
+        <span>Next: <span data-deck-next-title></span></span>
+      </div>
+      <div data-deck-notes-text class="notes-text"></div>
+    </div>
+
+    <script src="plainslides.iife.js"></script>
+    <script>
+      // Recipe 18: a custom chart widget. The figure's aria-label carries the
+      // full data, so the chart needs no other text alternative.
+      const bars = {
+        mount(element) {
+          const svgNs = 'http://www.w3.org/2000/svg'
+          const rows = element.dataset.values.split(',').map((pair) => {
+            const [label, value] = pair.split(':')
+            return { label, value: Number(value) }
+          })
+          const max = Math.max(...rows.map((row) => row.value))
+          const svg = document.createElementNS(svgNs, 'svg')
+          svg.setAttribute('viewBox', `0 0 400 ${rows.length * 60}`)
+          svg.setAttribute('aria-hidden', 'true')
+          rows.forEach((row, index) => {
+            const bar = document.createElementNS(svgNs, 'rect')
+            bar.setAttribute('x', '140')
+            bar.setAttribute('y', String(index * 60 + 10))
+            bar.setAttribute('height', '36')
+            bar.setAttribute('width', String((row.value / max) * 240))
+            bar.setAttribute('class', 'bar')
+            const text = document.createElementNS(svgNs, 'text')
+            text.setAttribute('x', '0')
+            text.setAttribute('y', String(index * 60 + 34))
+            text.textContent = row.label
+            svg.append(bar, text)
+          })
+          element.replaceChildren(svg)
+          return () => element.replaceChildren()
+        },
+      }
+
+      PlainSlides.start({ widgets: { bars } })
+    </script>
+  </body>
+</html>

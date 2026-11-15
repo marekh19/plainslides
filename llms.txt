@@ -1,0 +1,20 @@
+# plainslides
+
+> Headless TypeScript library for HTML slide decks, built for AI agents. The library provides navigation, step reveals, slide transitions, scaling, a presenter window, timing, and modes. The author writes all markup and styles. A deck is one HTML file plus the IIFE build `plainslides.iife.js`, and it works from `file://` with no server and no network.
+
+Read the agent guide before you build a deck. It contains the markup contract, keys, options, API, 20 recipes, and a checklist.
+
+## Docs
+
+- [Agent guide](docs/agent-guide.md): everything an agent needs to build a deck with plainslides.
+- [README](README.md): overview, install, and development commands for people.
+
+## Examples
+
+- [Starter deck](examples/starter/index.html): a complete deck that shows every recipe. Copy the folder as a starting point.
+- [Starter styles](examples/starter/example.css): commented example CSS for themes, recipes, step reveals, and transitions.
+
+## Optional
+
+- [Structural CSS](dist/structure.css): the CSS the library injects, for decks that set `injectStyles: false`.
+- [Layout helpers](dist/layout.css): the `data-layout` helper CSS.

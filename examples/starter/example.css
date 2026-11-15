@@ -1,0 +1,582 @@
+/*
+  Example styles for the starter deck. The library ships no visual styles;
+  everything here is yours to change. Sections:
+  1. Theme tokens   2. Page and slide base   3. Recipes
+  4. Step reveals   5. Slide transitions     6. Overview, help, notes, progress
+  Fonts: system fonts only, so the deck works offline. To use a custom font,
+  embed it as a base64 @font-face or a local file. Never use a font CDN.
+*/
+
+/* 1. Theme tokens. The theme plugin sets data-theme on <html>.
+   Check contrast: body text and accent text need 4.5:1 or more. */
+:root,
+[data-theme='dark'] {
+  --bg: #0f1115;
+  --surface: #1a1d24;
+  --text: #e8eaed;
+  --muted: #a3a9b4;
+  --accent: #7cc4ff;
+  --line: #2d323c;
+  color-scheme: dark;
+}
+[data-theme='light'] {
+  --bg: #ffffff;
+  --surface: #f2f4f7;
+  --text: #16181d;
+  --muted: #4b5260;
+  --accent: #0a5cc2;
+  --line: #d5d9e0;
+  color-scheme: light;
+}
+
+/* 2. Page and slide base. Slides are 1600x900 CSS pixels before scaling,
+   so use large fixed sizes. */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}
+body {
+  overflow: hidden;
+}
+body:has([data-mode-overview]) {
+  overflow: auto;
+}
+[data-slide] {
+  padding: 96px 120px;
+  background: var(--bg);
+  font-size: 32px;
+  line-height: 1.4;
+  --gap: 32px;
+}
+h1 {
+  font-size: 104px;
+  line-height: 1.05;
+  margin: 0;
+}
+h2 {
+  font-size: 64px;
+  margin: 0;
+}
+h3 {
+  font-size: 36px;
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+code,
+pre,
+kbd {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* 3. Recipes */
+
+/* Recipe 1: title and closing slides */
+.slide-title {
+  justify-content: center;
+}
+[data-role='eyebrow'] {
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-role='lead'] {
+  color: var(--muted);
+  font-size: 40px;
+}
+[data-role='kicker'] {
+  color: var(--muted);
+}
+
+/* Recipes 2 and 3: agenda and section tracker. The library sets data-state
+   (past, current, future) and aria-current="step" on each item. */
+.agenda,
+.tracker {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.agenda {
+  display: grid;
+  gap: 16px;
+  font-size: 44px;
+  counter-reset: agenda;
+}
+.agenda li {
+  counter-increment: agenda;
+}
+.agenda li::before {
+  content: counter(agenda, decimal-leading-zero) '  ';
+  color: var(--muted);
+}
+.tracker {
+  display: flex;
+  gap: 8px;
+}
+.tracker li {
+  flex: 1;
+  border-top: 6px solid var(--line);
+  padding-top: 12px;
+  color: var(--muted);
+}
+.tracker li[data-state='past'] {
+  border-color: var(--muted);
+}
+.tracker li[data-state='current'] {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.tracker-small {
+  font-size: 20px;
+}
+.tracker-large {
+  width: 100%;
+  font-size: 30px;
+}
+.slide-divider h2 {
+  font-size: 120px;
+}
+
+/* Recipe 4: stat grid */
+[data-role='stat'] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--surface);
+}
+[data-role='stat-value'] {
+  color: var(--accent);
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 1;
+}
+[data-role='stat-label'] {
+  color: var(--muted);
+}
+
+/* Recipe 5: hero number */
+[data-role='hero'] {
+  color: var(--accent);
+  font-size: 280px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Recipe 6: quote with citation */
+[data-role='quote'] {
+  max-width: 1200px;
+  margin: 0;
+  font-size: 64px;
+  line-height: 1.2;
+}
+[data-role='cite'] {
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 32px;
+}
+
+/* Recipe 7: card grid with tags */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+}
+[data-role='tag'] {
+  align-self: start;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 22px;
+}
+
+/* Recipe 8: numbered steps with CSS counters */
+.numbered {
+  display: grid;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  font-size: 44px;
+}
+.numbered li {
+  counter-increment: step;
+  display: flex;
+  gap: 32px;
+  align-items: baseline;
+}
+.numbered li::before {
+  content: counter(step);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Recipe 9: vertical flow with connectors */
+.flow {
+  display: grid;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.flow li {
+  position: relative;
+  padding: 20px 32px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  width: fit-content;
+}
+.flow li + li::before {
+  content: '';
+  position: absolute;
+  left: 48px;
+  top: -42px;
+  height: 40px;
+  border-left: 3px solid var(--accent);
+}
+
+/* Recipe 10: tree with right-aligned metadata */
+.tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: ui-monospace, Menlo, monospace;
+  max-width: 900px;
+}
+.tree li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.tree li span:last-child {
+  color: var(--muted);
+}
+.tree-child {
+  padding-left: 48px !important;
+}
+
+/* Recipe 11: terminal block */
+.terminal {
+  margin: 0;
+  padding: 40px;
+  border-radius: 16px;
+  background: #05070a;
+  color: #e8eaed;
+  font-size: 26px;
+  white-space: pre-wrap;
+}
+.terminal [data-role='prompt'] {
+  color: #7cc4ff;
+}
+.terminal [data-role='output'] {
+  color: #a3a9b4;
+}
+
+/* Recipe 12: key-value comparison list */
+.kv {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+.kv div {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.kv dt {
+  color: var(--muted);
+}
+.kv dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Recipe 13: data table */
+.data {
+  border-collapse: collapse;
+  font-size: 32px;
+}
+.data caption {
+  text-align: left;
+  color: var(--muted);
+  padding-bottom: 16px;
+}
+.data th,
+.data td {
+  padding: 16px 48px 16px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+/* Recipe 14: takeaways with large counters */
+.takeaways {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: takeaway;
+  font-size: 48px;
+}
+.takeaways li {
+  counter-increment: takeaway;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.takeaways li::before {
+  content: counter(takeaway);
+  color: var(--accent);
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Recipe 15: bottom-pinned conclusion (data-push in a column layout) */
+.conclusion {
+  padding-top: 24px;
+  border-top: 2px solid var(--line);
+  color: var(--accent);
+  font-size: 40px;
+}
+
+/* Recipe 16: footer rail */
+.rail {
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 22px;
+}
+
+/* Recipe 18: chart widget */
+.chart {
+  margin: 0;
+  align-self: center;
+}
+.chart svg {
+  width: 100%;
+  font-size: 22px;
+  fill: var(--text);
+}
+.chart .bar {
+  fill: var(--accent);
+}
+
+/* 4. Step reveals. The library sets data-step-state to hidden, visible, or
+   current. Hidden steps must be invisible; keep their space with
+   visibility so the layout does not jump. */
+[data-step-state='hidden'] {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Fade in and slide up on reveal. */
+  [data-step-state='current'] {
+    animation: step-in 300ms ease-out;
+  }
+}
+/* Highlight the current item and dim earlier items. */
+.focus-steps [data-step-state='visible'] {
+  opacity: 0.45;
+}
+@keyframes step-in {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+
+/* 5. Slide transitions. The library sets data-entering and data-leaving to
+   the transition name and data-direction on the root, then waits for the
+   animations to finish. Wrap every animation in the reduced-motion query. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-entering='fade'] {
+    animation: fade-in 300ms ease-out;
+  }
+  [data-leaving='fade'] {
+    animation: fade-out 300ms ease-in forwards;
+  }
+  [data-direction='forward'] [data-entering='slide'] {
+    animation: slide-from-right 400ms ease-out;
+  }
+  [data-direction='forward'] [data-leaving='slide'] {
+    animation: slide-to-left 400ms ease-in forwards;
+  }
+  [data-direction='backward'] [data-entering='slide'] {
+    animation: slide-from-left 400ms ease-out;
+  }
+  [data-direction='backward'] [data-leaving='slide'] {
+    animation: slide-to-right 400ms ease-in forwards;
+  }
+  [data-entering='zoom'] {
+    animation: zoom-in 400ms ease-out;
+  }
+  [data-leaving='zoom'] {
+    animation: fade-out 200ms ease-in forwards;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes slide-from-right {
+  from {
+    translate: 100% 0;
+  }
+}
+@keyframes slide-to-left {
+  to {
+    translate: -100% 0;
+  }
+}
+@keyframes slide-from-left {
+  from {
+    translate: -100% 0;
+  }
+}
+@keyframes slide-to-right {
+  to {
+    translate: 100% 0;
+  }
+}
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    scale: 0.9;
+  }
+}
+
+/* 6. Overview, help bar, notes panel, progress bar */
+
+/* Overview thumbnails. The library scales them with zoom. */
+[data-mode-overview] > [data-slide] {
+  outline: 2px solid var(--line);
+}
+[data-mode-overview] > [data-slide][data-state='active'] {
+  outline: 8px solid var(--accent);
+}
+
+/* Progress bar. The library sets --deck-progress from 0 to 1. */
+.progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 4px;
+  width: calc(var(--deck-progress, 0) * 100%);
+  background: var(--accent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .progress {
+    transition: width 200ms ease-out;
+  }
+}
+
+/* Help bar: hidden while the pointer rests (data-idle), and always shown in
+   help mode. */
+.help {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 14px;
+}
+.help[data-idle] {
+  opacity: 0;
+}
+body:has([data-mode-help]) .help {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .help {
+    transition: opacity 300ms;
+  }
+}
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Show only the first key per command in the compact bar. */
+.keys kbd ~ kbd {
+  display: none;
+}
+body:has([data-mode-help]) .keys {
+  flex-direction: column;
+}
+body:has([data-mode-help]) .keys kbd ~ kbd {
+  display: inline;
+}
+kbd {
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+/* Notes panel. The library hides it with the hidden attribute when notes
+   mode is off, and subtracts its height when it scales the stage. */
+.notes-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34vh;
+  overflow: auto;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 18px;
+}
+.notes-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  color: var(--muted);
+}
+[data-pace='behind'] {
+  color: #ff8a80;
+}
+[data-theme='light'] [data-pace='behind'] {
+  color: #b3261e;
+}
+
+/* Presenter window: the default layout uses these bindings. */
+[data-deck-presenter-window] {
+  padding: 0;
+  font-size: 20px;
+}
