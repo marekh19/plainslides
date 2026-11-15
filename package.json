@@ -1,6 +1,6 @@
 {
   "name": "plainslides",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "HTML slide decks that AI agents can build. Headless, offline, zero dependencies.",
   "keywords": [
     "ai-agents",
